@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Geist } from "next/font/google";
+import Head from "next/head";
 
 import axios from "axios";
 
@@ -131,29 +132,43 @@ export default function Home() {
   };
 
   return (
-    <div className={`${geistSans.className} min-h-screen h-screen bg-slate-50`}>
-      <div className="flex flex-col h-full w-full max-w-3xl mx-auto px-2 py-4">
-        <div className="flex-1 flex flex-col justify-end">
-          <div className="flex flex-col h-full max-h-[90vh] w-full">
-            <div className="flex-1 min-h-0">
-              <ChatArea messages={messages} />
-            </div>
-            <div className="shrink-0">
-              <InputArea
-                inputText={inputText}
-                setInputText={setInputText}
-                uploadedFiles={uploadedFiles}
-                onFileUpload={handleFileUpload}
-                onRemoveFile={removeFile}
-                isRecording={isRecording}
-                onToggleRecording={toggleRecording}
-                onSubmit={handleSubmit}
-                isLoading={isLoading}
-              />
+    <>
+      <Head>
+        <title>Multimodal AI Chat App</title>
+        <meta
+          name="description"
+          content="Chat with an intelligent multimodal AI that understands text, images, and more. Fast, smart, and easy to use."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="UTF-8" />
+      </Head>
+
+      <div
+        className={`${geistSans.className} min-h-screen h-screen bg-slate-50`}
+      >
+        <div className="flex flex-col h-full w-full max-w-3xl mx-auto px-2 py-4">
+          <div className="flex-1 flex flex-col justify-end">
+            <div className="flex flex-col h-full max-h-[90vh] w-full">
+              <div className="flex-1 min-h-0">
+                <ChatArea messages={messages} />
+              </div>
+              <div className="shrink-0">
+                <InputArea
+                  inputText={inputText}
+                  setInputText={setInputText}
+                  uploadedFiles={uploadedFiles}
+                  onFileUpload={handleFileUpload}
+                  onRemoveFile={removeFile}
+                  isRecording={isRecording}
+                  onToggleRecording={toggleRecording}
+                  onSubmit={handleSubmit}
+                  isLoading={isLoading}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
